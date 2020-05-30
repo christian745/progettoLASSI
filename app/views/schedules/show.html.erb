@@ -1,0 +1,41 @@
+<!-- qui posso usare la variabile ruby @schedule che ho definito nella funzione show nel controller -->
+<h1> pagina show </h1>
+<div class="shadow-lg p-3 mb-2 bg-white rounded">
+
+  <p class="m-1 font-weight-normal"><strong class="font-weight-bold">User:</strong> <%= @schedule.user.email.split('@')[0].capitalize %></p> 
+  <p class="m-1">Tipo: <%= @schedule.tipo %></p>
+  <p class="m-1">Muscoli: <%= @schedule.muscoli %></p>
+  <p class="m-1 mt-5"> Descrizione: <p>
+  <p class="m-1" style="background-color:#EEEBD9;"><%= @schedule.descrizione %></p>
+</div>
+
+<!-- attualmente ho definito un solo utente admin: adminprova@gmail.com e passwordadmin.  l'ho inserito da console-->
+<!--IDEA: stavo pensando di inserire una opzione aperta solamente agli admin, tramite la quale si puo eliminare uno user dal database.
+in pratica volevo implementare la possibilita da parte dell'admin di banare le persone -->
+
+<!-- perche questi bottoni funzionino dobbiamo definire le funzioni edit e destroy nel controller-->
+<% if(current_user==@schedule.user || current_user.admin) %>                    <!--mostra il tasto per eliminare la scheda e quello per editarla solo sulle schede create dall utente attuale e all'admin-->
+<%= link_to 'Edit This Schedule', edit_schedule_path, :class => 'btn btn-outline-secondary'%>
+<%= link_to 'Delete This Schedule', schedule_path,
+                                   method: :delete,   
+                                   data: {confirm: 'Are You Sure?'},
+                                    :class => 'btn btn-outline-danger'%>
+<% else %>
+<button class='btn btn-outline-secondary disabled'>only owner and admin can edit this</button>
+<button class='btn btn-outline-danger disabled'>only owner and admin can delete this</button>
+<% end %>
+
+<!-- per il destroy abbiamo dovuto specificare il metodo delete (anche qui dalle route vediamo che la chiamata crud associata al destroy è una delete.
+poi inseriamo un modulo di conferma di eliminazione e in fine stile del bottone)-->
+
+<hr color="smoke">
+
+<%= render 'comments/comments'%>  <!-- importo il codice che visualizza la lista di commenti-->
+<%= render 'comments/form'%>      <!-- e quello per la form che permette di aggiungerne-->
+
+
+
+
+
+
+

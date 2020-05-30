@@ -1,0 +1,27 @@
+<!-- ora voglio visualizzare tutti i commenti a questa specifica scheda proprio sotto di essa e prima del form per inserire altri commenti-->
+<h2> Comments: </h2>
+
+<% @schedule.comments.each do |comment| %>
+<div class="shadow-none p-3 mb-3 bg-light rounded">         
+
+<p><strong class="font-weight-bold"><%= comment.user.email.split('@')[0].capitalize %>: </strong><%= comment.body %>  <!-- mostro in qualsiasi caso il body del commento-->
+
+<% if current_user.id == comment.user_id || current_user.admin %>   <!-- sblocco il bottone delete solo a chi ha scritto il commento oppure all'admin-->                            
+<!-- passiamo scheda a cui appartiene il commento che vogliamo cancellare e il commento stesso-->
+<%= link_to 'Delete', [comment.schedule,comment],   
+                                   method: :delete,   
+                                   data: {confirm: 'Are You Sure?'},
+                                    :class => 'float-right btn btn-outline-danger'%></p>
+<% else %>
+<button class='btn btn-outline-danger disabled float-right'>only owner and admin can delete this</button>
+<% end %>
+
+  
+</div>
+<% end %>
+
+
+
+<!-- in questo file ci metto il codice che serve a visualizzare tuttii commenti di una scheda. il file inizia con un _ perche poi
+dovro importare questo file nella view show delle schede.
+potevo anche scrivere direttamente li il codice ma cosi viene piu ordinato-->

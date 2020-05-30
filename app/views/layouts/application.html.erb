@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProgettoLASSI</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <!--bootstrap inserito da me-->
+    <%= stylesheet_link_tag  'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' %>
+    
+    <!--inserito javascript e jquery da me per far funzionare la navbar di bootstrap-->
+     <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js' %>
+     <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' %>
+   
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <!-- il codice html che metto in queesta pagina apparira in tutte le pagine di questo progetto -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top ">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto text-center">
+      <li class="nav-item active" style="font-size:150%;">  <!-- per lo stile della voce di menu ho usato le classi bootstrap e lo style per a dimensione -->
+        <%= link_to 'Home', '/schedules',:class => 'badge badge-dark mt-2 font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
+      </li>
+       <li class="nav-item" style="font-size:150%;">  <!-- per lo stile della voce di menu ho usato le classi bootstrap e lo style per a dimensione -->
+        <%= link_to 'Add Schedule', new_schedule_path ,:class => 'badge badge-dark mt-2 font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
+      </li>                        <!-- possiamo linkare anche usando i metodi _path invece dell' URI come sopra-->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item" style="font-size:150%;">
+          <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %> <!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->
+          <% else %>
+          <%= link_to 'Sign up', new_user_registration_path ,:class => 'btn btn-outline-success' %> <!-- appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto-->
+          <%= link_to 'Sign in', new_user_session_path ,:class => 'btn btn-outline-success' %>
+          <% end %>
+      </li>  
+    </ul>
+  </div>
+</nav>
+
+<div class="container">  <!-- lo metto nel container per staccare il contenuto della pagina dal bordo-->
+<%= render 'layouts/alerts'%>
+<%= yield %>
+</div>
+  </body>
+</html>

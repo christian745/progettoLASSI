@@ -1,0 +1,29 @@
+
+<!-- dopo aver creato la tabella comment nel database e il relativo controller Comments, posiziono una form nella show di ogni post per poter aggiungervi un commento-->
+<h3> Add a Comment </h3>
+
+<!-- questa form mandera i parametri alla funzione create del controller Comments percio dovro definire quella funzione-->
+<%= form_for([@schedule, @schedule.comments.build]) do |s| %> <!-- :schedule è la variabile che conterra i parametri messi nella form, questi parametri saranno mandati all'url specificato, cioe al metodo create del controller -->
+ 
+
+<!--se volessi aggiungere il nome di chi ha pubblicato il commento vicino al commento non so devo fare unacolonna username nella tabella commento e riempirla automaticamente con lo username del current_user per poi mostrarla nel file _comments.html.erb -->
+
+  <p>
+    <%= s.label :body %> 
+    <%= s.text_area :body, :placeholder =>'minimo 5 caratteri' ,:class => 'form-control' %>
+  </p>
+
+<!-- questa riga è la chiave di tutta la faccenda dei commenti associati a determinati utenti, finche non ho messo questa riga che associva id dellutente al suo riferimento della tabella commento non mi faceva creare dei nuovi commenti-->
+<!--perche grazie a questa riga la colonna relativa alla FK viene riempia in modo da non avere problemi di integrita--> 
+<p>
+    <%= s.hidden_field :user_id, value: current_user.id %>     
+  </p>
+
+  
+  <p>
+    <%= s.submit :class => 'btn btn-outline-success' %>
+  </p>
+<% end %>
+
+
+<!-- discorso analogo al file _comments.html.erb-->

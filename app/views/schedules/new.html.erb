@@ -1,0 +1,30 @@
+<h1> Add a schedule </h1>
+<%= form_for :schedule, url: schedules_path do |s| %> <!-- :schedule è la variabile che conterra i parametri messi nella form, questi parametri saranno mandati all'url specificato, cioe al metodo create del controller -->
+   <!-- subito dopo la definizione della form possiamo mettere questo codice che servira a visualizzare un messagio di errore in caso i requisiti minimi
+        dei campi della form da riempire non siamo rispettati. questi requisiti minimi sono definiti nel modulo Schedule(validates....) -->
+  <% if @schedule.errors.any? %> 
+    <% @schedule.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  
+  
+  <p>
+    <%= s.label :tipo %> 
+    <%= s.text_field :tipo,:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+  </p>
+
+  <p>
+    <%= s.label :muscoli %> 
+    <%= s.text_field :muscoli, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= s.label :descrizione %> 
+    <%= s.text_area :descrizione,:class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= s.submit :class => 'btn btn-outline-success' %>
+  </p>
+<% end %>

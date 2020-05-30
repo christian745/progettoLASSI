@@ -1,0 +1,37 @@
+<h2 style="text-align:center">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|%>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+<!-- ho aggiunto questo div per posizionare il modulo, inoltre ho anche aggiunto dello stile alle text area -->
+<div class="registrazione text-center">
+  <div class="field mb-3">
+   <!--  <%= f.label :email %><br /> -->
+    <%= f.email_field :email, autocomplete: "email",:placeholder => 'email',:style => 'border-style:none; border-bottom:1px solid; border-color:green' %>
+                     <!--ho tolto l'opzione  autofocus: true  perche mi interferiva con lo stile, se dovessero esserci problemi verifica che non si per via di questo -->
+  </div>
+
+  <div class="field mb-3" >
+    <!-- <%= f.label :password %> -->
+    <% if @minimum_password_length %>
+    <!--  <em>(<%= @minimum_password_length %> characters minimum)</em>  -->
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password",:placeholder => 'password(6 car min)',:style => 'border-style:hidden; border-bottom:1px solid; border-color:green' %>
+  </div>
+
+  <div class="field">
+    <!-- <%= f.label :password_confirmation %><br/>  per ora lo commento, vedo come appare senza label e con placeholder -->
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => 'password confirmation', :style => 'border-style:hidden; border-bottom:1px solid; border-color:green'%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" , :class => 'btn btn-lg btn-outline-success mt-3 ' %>
+  </div>
+  
+</div>
+<% end %>
+
+<!--
+<%= render "devise/shared/links" %>         tasto log in che rimanda a una view definita in device che contiene tutti controlli sullo stato della sessione e sulla pagina attuale e a seconda del risultato dei controlli mostra uno o l'altro link.
+                                            per ora levo questo link, ma tieni a mente che esiste il file e che puo essere molto utile per la navigazione-->

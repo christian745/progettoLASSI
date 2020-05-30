@@ -1,0 +1,31 @@
+<h1> You're Editing The Schedule </h1>
+ 
+
+<!-- la orm è simile a quella dell'editing, cambia pero l'url che adesso è al metodo update della singola scheda passatagli. inoltre qui dobbiamo definire il metodo, che sara patch( dalle route vediamo che è la chimata associata da update)-->
+<%= form_for :schedule, url: schedule_path(@schedule), method: :patch do |s| %>
+  <% if @schedule.errors.any? %> 
+    <% @schedule.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  
+  
+  <p>
+    <%= s.label :tipo %> 
+    <%= s.text_field :tipo,:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+  </p>
+
+  <p>
+    <%= s.label :muscoli %> 
+    <%= s.text_field :muscoli, :class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= s.label :descrizione %> 
+    <%= s.text_area :descrizione,:class => 'form-control' %>
+  </p>
+
+  <p>
+    <%= s.submit :class => 'btn btn-outline-success' %>
+  </p>
+<% end %>

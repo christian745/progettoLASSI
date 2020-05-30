@@ -1,0 +1,52 @@
+
+<!--pagina iniziale del progetto da dove l'utente puo registrarsi e a quel punto accedere a tutti i bottoni di questa pagina-->
+
+<% if user_signed_in? %> <!--uno dei metodi utili di cui posso usufruire avendo creato una sessione con devise (lezione autenticazione cima)-->
+<p>Logged in as <%= current_user.email %></p>
+<% end %>
+
+
+
+
+<h1> visualizzo tutte le schede </h1>
+
+<!-- il professore diceva di eseguire rails g devise:views user.
+io ho seguito il tutorial e ho eseguito rails g devise:views che mi ha creato piu cartelle con varie views che probabilmente mim saranno utili-->
+
+
+
+
+<!--controllo se c'è una sessione attiva, a seconda del controllo mostro bottoni diversi -->
+
+<!--per ora la commento in quanto ho messo il controllo e i bottoni direttamente nella navbar in layouts/application.html.erb
+
+
+<% if current_user %>
+<%= link_to 'Sign_out', destroy_user_session_path, method: :delete %>  mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) 
+<% else %>
+<%= link_to 'Sign_up', new_user_registration_path %>  appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto
+<%= link_to 'Sign_in', new_user_session_path %>
+<% end %>
+-->
+
+
+
+<!--mostro tutte le schede-->
+<% @schedules.each do |s| %>
+
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+      <p class=" font-weight-normal"><strong class=" font-weight-bold"> User: </strong><%= s.user.email.split('@')[0].capitalize %></p>
+      <p>
+        Tipo:
+        <%= s.tipo %>
+      </p>
+      <p>
+        Muscoli:
+        <%= s.muscoli %>
+      </p> 
+      <!-- la descrizione non la metto qui, la metto nel read more -->
+      <%= link_to 'Read Description', schedule_path(s) , :class => 'btn btn-outline-info' %>
+  </div>
+    
+<% end %>
+
