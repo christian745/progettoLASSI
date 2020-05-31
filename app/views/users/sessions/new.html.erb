@@ -21,6 +21,11 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+
+<!-- forniamo il tasto per loggarci con google
+   <%= link_to "Sign in with google", new_user_oauth_session_path(:google) %> 
+   -->
+
 <% end %>
 
 <%= render "users/shared/links" %>

@@ -7,6 +7,9 @@
     
     <!--bootstrap inserito da me-->
     <%= stylesheet_link_tag  'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' %>
+    <!-- css pe i social button-->
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'%>
+
     
     <!--inserito javascript e jquery da me per far funzionare la navbar di bootstrap-->
      <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js' %>
@@ -42,6 +45,8 @@
           <% else %>
           <%= link_to 'Sign up', new_user_registration_path ,:class => 'btn btn-outline-success' %> <!-- appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto-->
           <%= link_to 'Sign in', new_user_session_path ,:class => 'btn btn-outline-success' %>
+          <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path  ,:class => ' p-1 pb-2 fa fa-google',:style => 'background: transparent;
+  color: white; border: 1px solid; border-radius:4%'%>                         <!-- path che porta al controller callback che gestisce i dati che arrivano da google-->
           <% end %>
       </li>  
     </ul>
