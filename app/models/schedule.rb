@@ -4,6 +4,8 @@ class Schedule < ApplicationRecord
     
     validates :tipo, presence: true   #metto delle condizioni alla form per aggiungere schede. come la presenza obbligatoria, o la lunghezza minima
     validates :muscoli, presence: true
+    validates :descrizione, presence: true
+
 
 
     #IMPORTANTE: dato che una scheda è legata a piu commenti, devo usare l'opzione on delete cascade sule schede cosi che se

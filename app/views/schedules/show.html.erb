@@ -3,10 +3,13 @@
 <div class="shadow-lg p-3 mb-2 bg-white rounded">
 
   <p class="m-1 font-weight-normal"><strong class="font-weight-bold">User:</strong> <%= @schedule.user.email.split('@')[0].capitalize %></p> 
-  <p class="m-1">Tipo: <%= @schedule.tipo %></p>
-  <p class="m-1">Muscoli: <%= @schedule.muscoli %></p>
-  <p class="m-1 mt-5"> Descrizione: <p>
-  <p class="m-1" style="background-color:#EEEBD9;"><%= @schedule.descrizione %></p>
+  <blockquote class="blockquote p-3 mb-2 bg-dark text-white">  "<%= @schedule.quote %>" <footer class="blockquote-footer"><cite title="Source Title">Source Title:  </cite><%= @schedule.fonte %></footer></blockquote>
+  
+  <p class="m-1"><strong class="font-weight-bold">Tipo:</strong><%= @schedule.tipo %></p>
+  <p class="m-1"><strong class="font-weight-bold">Muscoli:</strong><%= @schedule.muscoli %></p>
+  <p class="m-1 mt-3"><strong class="font-weight-bold">Descrizione:</strong><p>
+  <p class="p-3 mb-2 bg-info text-white">  <%= @schedule.descrizione %></p> <!-- <%= @ciao %>-->
+  
 </div>
 
 <!-- attualmente ho definito un solo utente admin: adminprova@gmail.com e passwordadmin.  l'ho inserito da console-->

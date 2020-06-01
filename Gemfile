@@ -3,15 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem 'devise'
+gem 'devise'            #per implementare log in, log out e log up in locale
+
 gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2' #per l'accesso tramite google
 
-gem 'haml'
+gem 'haml'             #per poter scrivere codice haml nelle viwes
 
-gem 'dotenv-rails'
+gem 'dotenv-rails'  #per poter gestire le variabili sensibili con un file .env da non condividere su github
 
+gem 'httparty'  #per effettuare la get alla API REST che mi resituira codice JSON
 
+gem 'json'    #mi serve per gestire la risposta alla get fatta con httparty, che sarà codice json
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

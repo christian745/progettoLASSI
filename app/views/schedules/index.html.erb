@@ -1,14 +1,13 @@
 
 <!--pagina iniziale del progetto da dove l'utente puo registrarsi e a quel punto accedere a tutti i bottoni di questa pagina-->
 
+<h1 style="text-align:center"> Home page </h1>
+
+
 <% if user_signed_in? %> <!--uno dei metodi utili di cui posso usufruire avendo creato una sessione con devise (lezione autenticazione cima)-->
 <p>Logged in as <%= current_user.email %></p>
 <% end %>
 
-
-
-
-<h1> visualizzo tutte le schede </h1>
 
 <!-- il professore diceva di eseguire rails g devise:views user.
 io ho seguito il tutorial e ho eseguito rails g devise:views che mi ha creato piu cartelle con varie views che probabilmente mim saranno utili-->
@@ -35,6 +34,7 @@ io ho seguito il tutorial e ho eseguito rails g devise:views che mi ha creato pi
 <% @schedules.each do |s| %>
 
   <div class="shadow-lg p-3 mb-5 bg-white rounded">
+  <blockquote class="blockquote p-3 mb-2 bg-dark text-white">  "<%= s.quote %>" <footer class="blockquote-footer"><cite title="Source Title">Source Title:  </cite><%= s.fonte %></footer></blockquote>
       <p class=" font-weight-normal"><strong class=" font-weight-bold"> User: </strong><%= s.user.email.split('@')[0].capitalize %></p>
       <p>
         Tipo:
