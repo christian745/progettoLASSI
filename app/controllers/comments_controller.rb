@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
     def create
         @schedule = Schedule.find(params[:schedule_id])  #trova la scheda che vogliamo commentare
-        @comment = @schedule.comments.create(params.require(:comment).permit(:body,:user_id)) #permit serve ha dare i permessi ad aggiungere quei valori. devo dare il permesso per bdy che inserisco nella form del commento e per user_id che mi prendo con l'hidden_field
+        @comment = @schedule.comments.create(params.require(:comment).permit(:body,:user_id)) #permit serve ha dare i permessi ad aggiungere quei valori. devo dare il permesso per body che inserisco nella form del commento e per user_id che mi prendo con l'hidden_field
        
         redirect_to schedule_path(@schedule) #rimanda alla pagina della scheda
     end
@@ -14,5 +14,20 @@ class CommentsController < ApplicationController
         @comment.destroy                                    #elimino il commento dal database
     
         redirect_to schedule_path(@schedule)   #ridirigo alla pagina della scheda a cui apparteneva il commento, devo per forza passargli @schedule altrimenti non capisce a qual scheda andare
+    end
+
+    def edit
+        @comment = Comment.find(params[:id]) #ci prendiamo il commento specifico che vogliamo editare, come nella show
+    end
+
+    def update
+        @schedule = Schedule.find(params[:schedule_id]) #devo salvarmi la scheda da cui viene il commento per poter reindirizzare l'utente una volta finito di modificare il commento
+        @comment = Comment.find(params[:id]) #recupero lo schedule di cui si parla analogamente a quanto fatto in edit
+
+        if(@comment.update(params.require(:comment).permit(:body)))#controllo analogo alla create
+            redirect_to schedule_path(@schedule)  #rimando alla scheda a cui appartiene il commento
+        else 
+            render 'edit'  
+        end
     end
 end

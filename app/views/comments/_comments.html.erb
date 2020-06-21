@@ -11,9 +11,14 @@
 <%= link_to 'Delete', [comment.schedule,comment],   
                                    method: :delete,   
                                    data: {confirm: 'Are You Sure?'},
-                                    :class => 'float-right btn btn-outline-danger'%></p>
+                                    :class => 'btn btn-outline-danger float-right'%>
+<%= link_to 'Edit This Comment', edit_schedule_comment_path(comment.schedule,comment), :class => 'btn btn-outline-secondary float-right'%></p>
+<!--IMPORTANTE: essendo una route annidata quando vado ad editare un commento o a cancellarlo devo passargli anche la schedule di appartenenza del commento 
+FONTE: https://stackoverflow.com/questions/21708256/no-route-matches-missing-required-keys-id/26379000-->
+
 <% else %>
 <button class='btn btn-outline-danger disabled float-right'>only owner and admin can delete this</button>
+<button class='btn btn-outline-secondary disabled float-right'>only owner and admin can edit this</button>
 <% end %>
 
   

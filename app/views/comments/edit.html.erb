@@ -1,0 +1,19 @@
+<h1> You're Editing This Comment </h1>
+ 
+
+<!-- la form è simile a quella dell'editing, cambia pero l'url che adesso è al metodo update della singola scheda passatagli. inoltre qui dobbiamo definire il metodo, che sara patch( dalle route vediamo che è la chimata associata da update)-->
+<%= form_for :comment, url: schedule_comment_path(@comment.schedule,@comment), method: :patch do |s| %>
+  <% if @comment.errors.any? %> 
+    <% @comment.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  <p>
+    <%= s.label :body %> 
+    <%= s.text_area :body,:class => 'form-control' %><!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+  </p>
+
+  <p>
+    <%= s.submit :class => 'btn btn-outline-success' %>
+  </p>
+<% end %>
