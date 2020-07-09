@@ -1,0 +1,7 @@
+<h2><%= @tip.titolo %></h2>
+<p>Categoria: <%= @tip.categoria%></p>
+<p>Contenuto:</p>
+<p><%= @tip.contenuto%></p>
+<%= link_to("Modifica consiglio", edit_tip_path(@tip)) %>
+<br>
+<%= link_to("Torna alla lista dei consigli", tips_path)%>

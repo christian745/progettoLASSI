@@ -1,0 +1,14 @@
+<h1>Modifica consiglio</h1>
+<form id="myform" >
+    <h3>Titolo</h3>
+    <input type="text" name="titolo" value="<%= @tip.titolo %>"> 
+    <h3>Categoria</h3>
+    <input type="text" name="categoria" value="<%= @tip.categoria %>">
+    <h3>Contenuto</h3>
+    <textarea form="myform" name="contenuto"><%= @tip.contenuto %> </textarea>
+    <br>
+    <input type="submit" value="Conferma modifiche">
+</form>
+<%= link_to("Torna alla pagina precedente", tip_path(@tip))%>
+<br>
+<%= link_to("Torna alla lista dei consigli", tips_path)%>

@@ -1,0 +1,29 @@
+<h1  class="text-center">Lista consigli</h1>
+<div>
+    <span class="input-group float-left">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">🔍</span>
+        </div>
+        <input id="search" type="text" placeholder="Cerca per nome della scheda" size="40" onkeyup="search()">
+    </span>
+    <a type="button" class="btn btn-outline-primary float-right" href=<%= new_tip_path %> >Aggiungi un consiglio!</a>
+</div>
+
+<br>
+<table id="myTable" class="table table-striped border">
+    <thead class="thead-dark">
+        <th>Titolo</th>
+        <th>Categoria</th>
+        <th>Dettagli</th>
+    </thead>
+    <tbody id='myContent'>
+        <% @tips.each do |tip| %>
+        <tr>
+            <td><h5><%= tip.titolo %></h5></td>
+            <td><%= tip.categoria %></td>
+            <td><%= link_to("Vai al contenuto", tip_path(tip))%></td>
+        </tr>
+        <% end %>
+    </tbody>
+    <br>
+</table>

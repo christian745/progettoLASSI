@@ -1,0 +1,21 @@
+<h1>Crea un nuovo consiglio</h1>
+<form method="POST" action=<%= tips_path%> id="myform">
+        <h4> Titolo </h4>
+        <input type="text" name="titolo">
+        <h4> Categoria</h4>
+        <input type="radio" name="categoria" value="allenamento" checked> Allenamento
+        <br>
+        <input type="radio" name="categoria" value="integratori"> Integratori
+        <br>
+        <input type="radio" name="categoria" value="dieta"> Dieta
+
+        <h4> Contenuto </h4>
+        <textarea form="myform" name="contenuto" placeholder="Campo obbligatorio" placeholder="Contenuto del consiglio"></textarea>
+
+        <br>
+        <input type="submit" value="Invia">
+        
+        
+</form> 
+        
+       
