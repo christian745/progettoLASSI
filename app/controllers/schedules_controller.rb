@@ -35,7 +35,6 @@ class SchedulesController < ApplicationController
         #DOCUMENTAZIONE API USATA: https://www.bulkhackers.com/quotes-api/
         @ciao = HTTParty.get('https://www.bulkhackers.com/wp-json/bulk-hackers/get-quotes?tag='+tag+'&search='+search+'&name='+name+'&access='+ENV['API_KEY'])
 
-
         @length = @ciao.count #conto le citazioni disponibili per quei parametri selezionati
           
         #la risposta è in formato json, ho dovuto percio installare la gemma 'json' per poter qui gestire la risposta. 
@@ -99,5 +98,16 @@ class SchedulesController < ApplicationController
         @schedule.destroy                        #metodo che elimina la scheda dal database
 
         redirect_to schedules_path   #ridirigo alla home con la lista delle schede 
+    end
+
+    def about 
+        
+    end
+
+    def christian
+    end
+    def sandro
+    end
+    def lorenzo
     end
 end

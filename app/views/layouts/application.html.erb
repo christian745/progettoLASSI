@@ -37,6 +37,12 @@
        <li class="nav-item" style="font-size:150%;">  <!-- per lo stile della voce di menu ho usato le classi bootstrap e lo style per a dimensione -->
         <%= link_to 'Add Schedule', new_schedule_path ,:class => 'badge badge-dark mt-2 font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
       </li>                        <!-- possiamo linkare anche usando i metodi _path invece dell' URI come sopra-->
+      <li class="nav-item" style="font-size:150%;">  
+        <%= link_to 'Consigli', tips_path,:class => 'badge badge-dark mt-2 font-weight-normal' %>  
+      </li>
+      <li class="nav-item" style="font-size:150%;">  
+        <%= link_to 'About us', '/about',:class => 'badge badge-dark mt-2 font-weight-normal' %>  
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item" style="font-size:150%;">
