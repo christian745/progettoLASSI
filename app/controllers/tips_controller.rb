@@ -22,13 +22,20 @@ class TipsController < ApplicationController
             flash[:alert] = "Riempi tutti i campi"
             redirect_to new_tip_path
         else
-            @tip=Tip.create!({user: user, titolo: tit, categoria: cat, contenuto: cont })
+            @tip=Tip.create!({user: user.email, titolo: tit, categoria: cat, contenuto: cont })
             redirect_to tips_path
         end
     end
 
     def show
         @tip = Tip.find(params[:id])
+        @user=current_user.email
+        @tip_user=@tip.user
+        @disabled=true
+        if (@user == @tip_user)
+            @disabled=false
+        end
+        
     end
 
     def edit
@@ -41,7 +48,27 @@ class TipsController < ApplicationController
         tit = params[:titolo]
         cat = params[:categoria]
         cont = params[:contenuto]
+        @tip = Tip.find(id)
+        query= Tip.where(titolo: tit)
+        if (query.length != 0)
+            flash[:alert] = "Titolo già esistente"
+            redirect_to edit_tip_path(@tip)
+            return
+        end
+        if (@tip.titolo != tit || @tip.categoria != cat || @tip.contenuto != cont)
+            @tip.update!(titolo: tit, categoria: cat, contenuto: cont)
+        end
+        redirect_to tip_path(@tip)
+    end
 
+    def destroy
+        @user=current_user.email
+        tip=Tip.find(params[:id])
+        @tip_user=tip.user
+        if (@user == @tip_user)
+            tip.destroy
+            redirect_to tips_path
+        end
     end
 
 

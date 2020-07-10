@@ -1,21 +1,30 @@
-<h1>Crea un nuovo consiglio</h1>
+<h1 class="text-dark">Crea un nuovo consiglio</h1>
 <form method="POST" action=<%= tips_path%> id="myform">
-        <h4> Titolo </h4>
-        <input type="text" name="titolo">
-        <h4> Categoria</h4>
-        <input type="radio" name="categoria" value="allenamento" checked> Allenamento
-        <br>
-        <input type="radio" name="categoria" value="integratori"> Integratori
-        <br>
-        <input type="radio" name="categoria" value="dieta"> Dieta
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Titolo</h4>
+        <small>Il titolo è il testo visibile dalla lista dei consigli</small>
+        <input type="text" class="form-control" name="titolo" placeholder="Descrivi in breve il tuo consiglio">
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Categoria</h4>
+        <small>Scegli la categoria più adatta per il consiglio</small>
+        <select class="form-control" name="categoria" required>
+            <option value="allenamento">Allenamento</option>
+            <option value="integratori">Integratori</option>
+            <option value="dieta">Dieta</option>
+        </select>
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Contenuto</h4>
+        <small>Questo contenuto sarà visibile solamente agli utenti registrati</small>
+        <textarea class="form-control" form="myform" name="contenuto" placeholder="Contenuto del consiglio"
+            rows="3"></textarea>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
 
-        <h4> Contenuto </h4>
-        <textarea form="myform" name="contenuto" placeholder="Campo obbligatorio" placeholder="Contenuto del consiglio"></textarea>
 
-        <br>
-        <input type="submit" value="Invia">
-        
-        
-</form> 
-        
-       
+</form>

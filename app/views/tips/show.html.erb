@@ -1,7 +1,26 @@
-<h2><%= @tip.titolo %></h2>
-<p>Categoria: <%= @tip.categoria%></p>
-<p>Contenuto:</p>
-<p><%= @tip.contenuto%></p>
-<%= link_to("Modifica consiglio", edit_tip_path(@tip)) %>
+<div class="card">
+    <div class="card-header">
+        
+        <blockquote class="blockquote">
+            <h1 class="display-4"><%= @tip.titolo %></h1>
+            <footer class="blockquote-footer">Categoria: &nbsp;<cite title="Source Title"><%= @tip.categoria%></cite></footer>
+        </blockquote>
+
+    </div>
+    <div class="card-body">
+        <%= @tip.contenuto%>
+    </div>
+</div>
 <br>
-<%= link_to("Torna alla lista dei consigli", tips_path)%>
+
+<% if @disabled %>
+<a class="btn btn-outline-primary disabled">Modifica consiglio</a>
+<a class="btn btn-outline-primary disabled">Rimuovi consiglio</a>
+<% else %>
+<a class="btn btn-outline-primary" href=<%= edit_tip_path(@tip) %>>Modifica consiglio</a>
+<a class="btn btn-outline-primary" data-method="delete" href=<%= tip_path(@tip)%>>Rimuovi consiglio</a>
+<% end %>
+
+<br><br>
+<a class="btn btn-outline-primary" href=<%= tips_path %>>Torna alla lista dei consigli</a>
+<br><br>

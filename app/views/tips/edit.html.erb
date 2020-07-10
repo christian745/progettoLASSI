@@ -1,14 +1,48 @@
 <h1>Modifica consiglio</h1>
-<form id="myform" >
-    <h3>Titolo</h3>
-    <input type="text" name="titolo" value="<%= @tip.titolo %>"> 
-    <h3>Categoria</h3>
-    <input type="text" name="categoria" value="<%= @tip.categoria %>">
-    <h3>Contenuto</h3>
-    <textarea form="myform" name="contenuto"><%= @tip.contenuto %> </textarea>
-    <br>
-    <input type="submit" value="Conferma modifiche">
+<form id="myform" method="POST" action=<%= tip_path(@tip)%>>
+    <input type="hidden" name="_method" value="put">
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Titolo</h4>
+        <small>Il titolo è il testo visibile dalla lista dei consigli</small>
+        <input type="text" class="form-control" name="titolo" placeholder="Descrivi in breve il tuo consiglio" value=<%= @tip.titolo %>>
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Categoria</h4>
+        <small>Scegli la categoria più adatta per il consiglio</small>
+        <select class="form-control" name="categoria" required>
+            <% if @tip.categoria == 'allenamento' %>
+                <option value="allenamento" selected>Allenamento</option>
+            <% else %>
+                <option value="allenamento">Allenamento</option>
+            <% end %> 
+            
+            <% if @tip.categoria == 'integratori' %>
+                <option value="integratori" selected>Integratori</option>
+            <% else %>
+                <option value="integratori">Integratori</option>
+            <% end %>
+
+            <% if @tip.categoria == 'dieta' %>
+                <option value="dieta" selected>Dieta</option>
+            <% else %>
+                <option value="dieta">Dieta</option>
+            <% end %>
+
+        </select>
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Contenuto</h4>
+        <small>Questo contenuto sarà visibile solamente agli utenti registrati</small>
+        <textarea class="form-control" form="myform" name="contenuto" placeholder="Contenuto del consiglio"
+            rows="3"><%= @tip.contenuto %></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Salva cambiamenti</button>
+
 </form>
-<%= link_to("Torna alla pagina precedente", tip_path(@tip))%>
-<br>
-<%= link_to("Torna alla lista dei consigli", tips_path)%>
+<hr>
+
+<a class="btn btn-outline-primary" href=<%= tip_path(@tip) %>>Torna alla pagina precedente</a>
+<a class="btn btn-outline-primary" href=<%= tips_path %>>Torna alla lista dei consigli</a>

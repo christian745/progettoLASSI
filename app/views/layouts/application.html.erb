@@ -9,7 +9,10 @@
     <%= stylesheet_link_tag  'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' %>
     <!-- css pe i social button-->
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'%>
+    <!--css fatto da noi-->
+    
 
+      <link rel="stylesheet" href="../../assets/stylesheets/application.css" type="text/css">
     
     <!--inserito javascript e jquery da me per far funzionare la navbar di bootstrap-->
      <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js' %>
@@ -32,27 +35,24 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto text-center">
       <li class="nav-item active" style="font-size:150%;">  <!-- per lo stile della voce di menu ho usato le classi bootstrap e lo style per a dimensione -->
-        <%= link_to 'Home', '/schedules',:class => 'badge badge-dark mt-2 font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
-      </li>
-       <li class="nav-item" style="font-size:150%;">  <!-- per lo stile della voce di menu ho usato le classi bootstrap e lo style per a dimensione -->
-        <%= link_to 'Add Schedule', new_schedule_path ,:class => 'badge badge-dark mt-2 font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
-      </li>                        <!-- possiamo linkare anche usando i metodi _path invece dell' URI come sopra-->
-      <li class="nav-item" style="font-size:150%;">  
-        <%= link_to 'Consigli', tips_path,:class => 'badge badge-dark mt-2 font-weight-normal' %>  
+        <%= link_to 'Home', '/schedules',:class => 'badge badge-dark font-weight-normal' %>    <!-- riportera alla pagina index che ha come url /schedules (visto dale routes)-->
       </li>
       <li class="nav-item" style="font-size:150%;">  
-        <%= link_to 'About us', '/about',:class => 'badge badge-dark mt-2 font-weight-normal' %>  
+        <%= link_to 'Consigli', tips_path,:class => 'badge badge-dark font-weight-normal' %>  
+      </li>
+      <li class="nav-item" style="font-size:150%;">  
+        <%= link_to 'Contattaci', '/about',:class => 'badge badge-dark font-weight-normal' %>  
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item" style="font-size:150%;">
           <% if current_user %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %> <!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->
+          <small class="text-light">Benvenuto <%= current_user.email %></small>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %><!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->
           <% else %>
           <%= link_to 'Sign up', new_user_registration_path ,:class => 'btn btn-outline-success' %> <!-- appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto-->
           <%= link_to 'Sign in', new_user_session_path ,:class => 'btn btn-outline-success' %>
-          <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path  ,:class => ' p-1 pb-2 fa fa-google',:style => 'background: transparent;
-  color: white; border: 1px solid; border-radius:4%'%>                         <!-- path che porta al controller callback che gestisce i dati che arrivano da google-->
+          <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path  ,:class => 'btn btn-outline-success'%>                         <!-- path che porta al controller callback che gestisce i dati che arrivano da google-->
           <% end %>
       </li>  
     </ul>

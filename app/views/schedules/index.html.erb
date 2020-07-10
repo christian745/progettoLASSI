@@ -2,32 +2,10 @@
 <!--pagina iniziale del progetto da dove l'utente puo registrarsi e a quel punto accedere a tutti i bottoni di questa pagina-->
 
 <h1 style="text-align:center"> Home page </h1>
-
-
-<% if user_signed_in? %> <!--uno dei metodi utili di cui posso usufruire avendo creato una sessione con devise (lezione autenticazione cima)-->
-<p>Logged in as <%= current_user.email %></p>
-<% end %>
-
-
-<!-- il professore diceva di eseguire rails g devise:views user.
-io ho seguito il tutorial e ho eseguito rails g devise:views che mi ha creato piu cartelle con varie views che probabilmente mim saranno utili-->
-
-
-
-
-<!--controllo se c'è una sessione attiva, a seconda del controllo mostro bottoni diversi -->
-
-<!--per ora la commento in quanto ho messo il controllo e i bottoni direttamente nella navbar in layouts/application.html.erb
-
-
-<% if current_user %>
-<%= link_to 'Sign_out', destroy_user_session_path, method: :delete %>  mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) 
-<% else %>
-<%= link_to 'Sign_up', new_user_registration_path %>  appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto
-<%= link_to 'Sign_in', new_user_session_path %>
-<% end %>
--->
-
+<div class="text-center">
+  <a class="btn btn-outline-danger" href=<%= new_schedule_path%>>Aggiungi scheda</a>
+</div>
+<br>
 
 
 <!--mostro tutte le schede-->
