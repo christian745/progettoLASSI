@@ -1,0 +1,24 @@
+<!-- pagina dei profili che puo essere visualizzata sia dagli utenti che dall'admin-->
+<h1 style="text-align:center"> Lista profili </h1>
+
+<!--mostro tutti i profili-->
+<% @profiles.each do |s| %>
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <p class=" font-weight-normal"><strong class=" font-weight-bold"> Email:
+        </strong><%= s.email%></p>
+    <p>
+
+
+    <!-- in questo caso stiamo facendo un for sugli utenti e non piu su schede perciò il confronto qui è fatto direttamente su s e non su s.user come per le schede-->
+    <!-- può accedere al profilo solo l'admin per rimuoverlo e lasciare messaggi e il proprietario del profilo per visualizzare i messaggi lasciati dall' admin-->
+
+    <!--cliccando qui accedo alla pagina show del singolo profilo in cui mettero i bottoni 'messaggio' e 'rimuovi' -->
+    <% if (current_user.email == s.email) %>
+    <%= link_to "Vedi il tuo profilo", profile_path(s), :class => 'btn btn-outline-danger'%>
+    <% else %>
+    <%= link_to 'Vedi dettagli', profile_path(s) , :class => 'btn btn-outline-info' %>
+    <% end %>
+</div>
+
+<% end %>

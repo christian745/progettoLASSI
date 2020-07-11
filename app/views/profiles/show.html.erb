@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+
+        <blockquote class="blockquote">
+            <h1 class="display-4"><%= @profile.name %> <%= @profile.surname%> </h1>
+            <footer class="blockquote-footer">Email:&nbsp; <cite title="Source Title"><%= @profile.email%></cite>
+            </footer>
+        </blockquote>
+
+    </div>
+    <div class="card-body">
+        <% if (@profile.address)%>
+        <p>Indirizzo: <%= @profile.address%></p>
+        <% else %>
+        <p>Indirizzo: non specificato</p>
+        <% end %>
+        <% if (@profile.gender == "male")%>
+        <p>Sesso: Uomo
+        <% else %>
+        <p>Sesso: Donna
+        <% end %>
+    </div>
+</div>
+<br>
+
+<% if @disabled %>
+<a class="btn btn-outline-primary disabled">Modifica profilo</a>
+<a class="btn btn-outline-primary disabled">Rimuovi profilo</a>
+<% else %>
+<a class="btn btn-outline-primary" href=<%= edit_profile_path(@profile) %>>Modifica profilo</a>
+<a class="btn btn-outline-primary" data-method="delete" href=<%= profile_path(@profile)%>>Rimuovi profilo</a>
+<% end %>
+
+<br><br>
+<a class="btn btn-outline-primary" href=<%= profiles_path %>>Torna alla lista dei profili</a>

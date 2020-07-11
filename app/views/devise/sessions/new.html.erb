@@ -1,19 +1,15 @@
 <!-- le modifiche a questa pagina sono analoghe a quelle del sign up e sign out (guarda le route per trovarli) -->
-<h2 style="text-align:center">Log in</h2>
-
+<h2 class="text-center">Login</h2>
+<hr>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-<div class="registrazione text-center">
-  <div class="field mb-3">
-    <!-- <%= f.label :email %><br/> -->
-    <%= f.email_field :email, autocomplete: "email",:placeholder => 'email', :style => 'border-style:none; border-bottom:1px solid; border-color:green'  %>
+  <div class="form-group">
+    <h4 class="text-dark">Email</h4>
+    <%= f.text_field :email, autocomplete: "email", :placeholder => "es. piero@pompiero.com", :class => 'form-control' %>
   </div>
-
-  <div class="field mb-3">
-    <!-- <%= f.label :password %><br/>  -->
-    <%= f.password_field :password, autocomplete: "current-password",:placeholder => 'password', :style => 'border-style:none; border-bottom:1px solid; border-color:green'  %>
+  <div class="form-group">
+    <h4 class="text-dark">Password</h4>
+    <%= f.password_field :password, autocomplete: "current-password", :placeholder => 'Inserisci la tua password', :class => 'form-control' %>
   </div>
-
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
@@ -22,8 +18,8 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" , :class => 'btn btn-lg btn-outline-success mt-3 ' %>
-  </div>
+    <%= f.submit "Login tramite email" , :class => 'btn btn-outline-primary' %>
+    <%= link_to "Login tramite Google", user_google_oauth2_omniauth_authorize_path, :class => 'btn btn-outline-primary' %>
   </div>
 <% end %>
 

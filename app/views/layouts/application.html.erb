@@ -40,6 +40,9 @@
       <li class="nav-item" style="font-size:150%;">  
         <%= link_to 'Consigli', tips_path,:class => 'badge badge-dark font-weight-normal' %>  
       </li>
+      <li class="nav-item" style="font-size:150%;">
+        <%= link_to 'Lista profili', profiles_path,:class => 'badge badge-dark font-weight-normal' %>
+      </li>
       <li class="nav-item" style="font-size:150%;">  
         <%= link_to 'Contattaci', '/about',:class => 'badge badge-dark font-weight-normal' %>  
       </li>
@@ -47,12 +50,15 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item" style="font-size:150%;">
           <% if current_user %>
-          <small class="text-light">Benvenuto <%= current_user.email %></small>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %><!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->
+            <% if current_user.gender == 'male' %>
+              <small class="text-light">Benvenuto <%= current_user.email %></small>
+            <% else %>
+              <small class="text-light">Benvenuta <%= current_user.email %></small>
+            <% end %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %><!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->
           <% else %>
-          <%= link_to 'Sign up', new_user_registration_path ,:class => 'btn btn-outline-success' %> <!-- appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto-->
-          <%= link_to 'Sign in', new_user_session_path ,:class => 'btn btn-outline-success' %>
-          <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path  ,:class => 'btn btn-outline-success'%>                         <!-- path che porta al controller callback che gestisce i dati che arrivano da google-->
+          <%= link_to 'Registrazione', new_user_registration_path ,:class => 'btn btn-outline-success' %> <!-- appena scritto questo link ho subito riscontrato un errore, non mi trovava registration_path, riavviando il server il problema si è risolto-->
+          <%= link_to 'Login', new_user_session_path ,:class => 'btn btn-outline-success' %>
           <% end %>
       </li>  
     </ul>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :comments    # in questo modo ogni schedule avra la sua serie di commenti
   end
   resources :tips
+  resources :profiles
 
 end
 
