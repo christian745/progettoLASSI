@@ -6,11 +6,21 @@
 
 <!-- ho aggiunto questo div per posizionare il modulo, inoltre ho anche aggiunto dello stile alle text area -->
 <div class="registrazione text-center">
+
+  <div class="field mb-3">
+  <%= f.text_field :name, autocomplete: "name",:placeholder => "name", :style => 'border-style:hidden; border-bottom:1px solid; border-color:green'%>
+  </div>
+
+  <div class="field mb-3">
+  <%= f.text_field :surname, autocomplete: "surname",:placeholder => "surname", :style => 'border-style:hidden; border-bottom:1px solid; border-color:green'%>
+  </div>
+
   <div class="field mb-3">
    <!--  <%= f.label :email %><br /> -->
     <%= f.email_field :email, autocomplete: "email",:placeholder => 'email',:style => 'border-style:none; border-bottom:1px solid; border-color:green' %>
                      <!--ho tolto l'opzione  autofocus: true  perche mi interferiva con lo stile, se dovessero esserci problemi verifica che non si per via di questo -->
   </div>
+
 
   <div class="field mb-3" >
     <!-- <%= f.label :password %> -->
@@ -24,6 +34,7 @@
     <!-- <%= f.label :password_confirmation %><br/>  per ora lo commento, vedo come appare senza label e con placeholder -->
     <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => 'password confirmation', :style => 'border-style:hidden; border-bottom:1px solid; border-color:green'%>
   </div>
+
 
   <div class="actions">
     <%= f.submit "Sign up" , :class => 'btn btn-lg btn-outline-success mt-3 ' %>
