@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get '/about/christian' => 'schedules#christian'
   get '/about/sandro' => 'schedules#sandro'
   get '/about/lorenzo' => 'schedules#lorenzo'
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }  #imposto il controller che gestira la callback
+
+  get '/schedules/filter/:id' => 'schedules#filter_schedules'
+  get '/schedules/filter/comments/:id' => 'schedules#filter_comments'
+  get '/tips/filter/:id' => 'tips#filter'
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", :registrations => "myregistrations" }  #imposto il controller che gestira la callback
   #devise_for :users 
   #automaticamente apparso quando abbiamo installato devise ed eseguito la migrate
  

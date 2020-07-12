@@ -3,32 +3,41 @@
 
         <blockquote class="blockquote">
             <h1 class="display-4"><%= @profile.name %> <%= @profile.surname%> </h1>
-            <footer class="blockquote-footer">Email:&nbsp; <cite title="Source Title"><%= @profile.email%></cite>
-            </footer>
+            <div class="row">
+                <footer class="blockquote-footer col">Email:&nbsp; <cite title="Source Title"><%= @profile.email%></cite></footer>
+                <footer class="blockquote-footer col"><cite title="Source Title">Attività utente:</cite></footer>
+            </div>
         </blockquote>
 
     </div>
-    <div class="card-body">
-        <% if (@profile.address)%>
-        <p>Indirizzo: <%= @profile.address%></p>
-        <% else %>
-        <p>Indirizzo: non specificato</p>
-        <% end %>
-        <% if (@profile.gender == "male")%>
-        <p>Sesso: Uomo
-        <% else %>
-        <p>Sesso: Donna
-        <% end %>
+    <div class="card-body row">
+        <div class="col">
+            <% if (@profile.address)%>
+                <p>Indirizzo: <%= @profile.address%></p>
+            <% else %>
+                <p>Indirizzo: non specificato</p>
+            <% end %>
+            <% if (@profile.gender == "male")%>
+                <p>Sesso: Uomo
+            <% else %>
+                <p>Sesso: Donna
+            <% end %>
+        </div>
+        <div class="col">
+            <p><a href="<%= schedules_path %>/filter/<%= @profile.id %> "> <b><%= @count_schedules %></b> schede pubblicate</a></p>
+            <p><a href="<%= tips_path %>/filter/<%= @profile.id %> "> <b><%= @count_tips %></b> consigli inseriti</a></p>
+            <p><a href="<%= schedules_path %>/filter/comments/<%= @profile.id %> "> <b><%= @count_comments %></b> commenti alle schede</a></p>
+        </div>
     </div>
 </div>
 <br>
 
 <% if @disabled %>
-<a class="btn btn-outline-primary disabled">Modifica profilo</a>
-<a class="btn btn-outline-primary disabled">Rimuovi profilo</a>
+    <a class="btn btn-outline-primary disabled">Modifica profilo</a>
+    <a class="btn btn-outline-primary disabled">Rimuovi profilo</a>
 <% else %>
-<a class="btn btn-outline-primary" href=<%= edit_profile_path(@profile) %>>Modifica profilo</a>
-<a class="btn btn-outline-primary" data-method="delete" href=<%= profile_path(@profile)%>>Rimuovi profilo</a>
+    <a class="btn btn-outline-primary" href=<%= edit_user_registration_path(@profile) %>>Modifica profilo</a>
+    <%= link_to "Rimuovi profilo", profile_path(@profile), :method => :delete, data: {:confirm => "Sei sicuro?"}, :class => 'btn btn-outline-primary' %>
 <% end %>
 
 <br><br>

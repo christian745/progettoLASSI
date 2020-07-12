@@ -19,7 +19,7 @@ class SchedulesController < ApplicationController
     end
 
     def create                                                                  #per ora levo :descrizione dai parametri perche per ora sto provando la get all api e uso il campo descrizione, se funziona la chiamata aggiungo una colonna alle schedule per il body della risposta all api
-        @schedule = Schedule.new(params.require(:schedule).permit(:tipo , :muscoli, :descrizione)) #in una variabile @schedule metto il risultato di una new chiamata sulla tabella del database schedule
+        @schedule = Schedule.new(params.require(:schedule).permit(:tipo , :muscoli, :descrizione, :titolo)) #in una variabile @schedule metto il risultato di una new chiamata sulla tabella del database schedule
                                                   #alla new ho passato i parametri della form creata nella view new.html.erb (rappresentati dalla variabile :schedule)
        
         search=params[:schedule][:search] #queste tre posso anche dichiararle senza chiocciola in quanto non è necessario passarle alla view
@@ -83,7 +83,7 @@ class SchedulesController < ApplicationController
     def update
         @schedule = Schedule.find(params[:id]) #recupero lo schedule di cui si parla analogamente a quanto fatto in edit
 
-        if(@schedule.update(params.require(:schedule).permit(:tipo,:muscoli,:descrizione,:search,:name,:tag)))           #controllo analogo alla create, dobbiamo pero
+        if(@schedule.update(params.require(:schedule).permit(:tipo,:muscoli,:descrizione,:search,:name,:tag, :titolo)))           #controllo analogo alla create, dobbiamo pero
             redirect_to @schedule 
         else 
             render 'edit'  
@@ -110,4 +110,26 @@ class SchedulesController < ApplicationController
     end
     def lorenzo
     end
+
+
+    def filter_schedules
+        @user_id = params[:id]
+        @schedules = Schedule.where(:user_id => @user_id)
+        render "index"
+    end
+    
+
+
+    def filter_comments
+        @user = params[:id]
+        @query = Comment.select("schedule_id").where(:user_id => @user).uniq
+        @comments = []
+        
+        @query.each do |q|
+            @comments.push(q.schedule_id)
+        end
+
+        @schedules = Schedule.all.select {|schedule| @comments.include? schedule.id}
+        render "index"
+    end 
 end

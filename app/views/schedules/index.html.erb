@@ -1,30 +1,58 @@
-
 <!--pagina iniziale del progetto da dove l'utente puo registrarsi e a quel punto accedere a tutti i bottoni di questa pagina-->
-
-<h1 style="text-align:center"> Home page </h1>
-<div class="text-center">
-  <a class="btn btn-outline-danger" href=<%= new_schedule_path%>>Aggiungi scheda</a>
+<h1 class="text-center">Home page</h1>
+<br>
+<div class="">
+  <span class="input-group float-left">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+          <path fill-rule="evenodd"
+            d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+        </svg>
+      </span>
+    </div>
+    <input id="search" type="text" placeholder="Cerca schede" size=30 onkeyup="searchSchedule()">
+  </span>
+  <a type="button" class="btn btn-outline-danger float-right" href=<%= new_schedule_path %>>Aggiungi una scheda</a>
 </div>
+<br>
 <br>
 
 
 <!--mostro tutte le schede-->
+
 <% @schedules.each do |s| %>
+<div class="shadow-lg p-3 mb-5 bg-white rounded search">
+  <h4 class="search-schedule"><%= s.titolo %> </h4>
+  <p class=" font-weight-normal">
+    <strong class=" font-weight-bold"> User:</strong>
+    <span class="search-schedule">
+      <% if s.user %> 
+        <%= s.user.name %> <%= s.user.surname %>
+      <% else %>
+        Utente non più attivo
+      <% end %>
+  </span>
+  
+  </p>
+  <p>
+    Tipo:
+    <span class="search-schedule"><%= s.tipo %></span>
+  </p>
+  <p>
+    Muscoli:
+    <span class="search-schedule"><%= s.muscoli %></span>
+  </p>
 
-  <div class="shadow-lg p-3 mb-5 bg-white rounded">
-  <blockquote class="blockquote p-3 mb-2 bg-dark text-white">  "<%= s.quote %>" <footer class="blockquote-footer"><cite title="Source Title">Source Title:  </cite><%= s.fonte %></footer></blockquote>
-      <p class=" font-weight-normal"><strong class=" font-weight-bold"> User: </strong><%= s.user.email.split('@')[0].capitalize %></p>
-      <p>
-        Tipo:
-        <%= s.tipo %>
-      </p>
-      <p>
-        Muscoli:
-        <%= s.muscoli %>
-      </p> 
-      <!-- la descrizione non la metto qui, la metto nel read more -->
-      <%= link_to 'Read Description', schedule_path(s) , :class => 'btn btn-outline-info' %>
+  <div class="alert alert-secondary" role="alert">
+     "<%= s.quote %>"
+    <small>Fonte: <span class="search-schedule"><%= s.fonte %></span></small>
   </div>
-    
-<% end %>
+  <!-- la descrizione non la metto qui, la metto nel read more -->
+  <%= link_to 'Read Description', schedule_path(s) , :class => 'btn btn-outline-info' %>
+</div>
 
+<% end %>

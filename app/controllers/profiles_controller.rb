@@ -12,6 +12,10 @@ class ProfilesController < ApplicationController
         if (@profile.email == current_user.email)
             @disabled=false
         end
+
+        @count_schedules = Schedule.where(:user_id => @profile.id).length
+        @count_tips = Tip.where(:user => @profile.email).length
+        @count_comments = Comment.where(:user_id => @profile.id).length
     end
 
     def destroy

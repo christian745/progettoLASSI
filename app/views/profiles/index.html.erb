@@ -1,24 +1,41 @@
 <!-- pagina dei profili che puo essere visualizzata sia dagli utenti che dall'admin-->
-<h1 style="text-align:center"> Lista profili </h1>
+<h1 class="text-center">Lista profili</h1>
+<br>
+<div class="">
+    <span class="input-group float-left">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+                <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                </svg>
+            </span>
+        </div>
+        <input id="search" type="text" placeholder="Cerca profili" size=30 onkeyup="searchProfile()">
+    </span>
+</div>
+<br>
+<br>
 
 <!--mostro tutti i profili-->
-<% @profiles.each do |s| %>
+    <% @profiles.each do |s| %>
 
-<div class="shadow-lg p-3 mb-5 bg-white rounded">
-    <p class=" font-weight-normal"><strong class=" font-weight-bold"> Email:
-        </strong><%= s.email%></p>
-    <p>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded search">
+        <p class="font-weight-normal"><strong class=" font-weight-bold"> Email:
+            </strong><span><%= s.email%></span></p>
+        <p>
+            <!-- in questo caso stiamo facendo un for sugli utenti e non piu su schede perciò il confronto qui è fatto direttamente su s e non su s.user come per le schede-->
+            <!-- può accedere al profilo solo l'admin per rimuoverlo e lasciare messaggi e il proprietario del profilo per visualizzare i messaggi lasciati dall' admin-->
 
+            <!--cliccando qui accedo alla pagina show del singolo profilo in cui mettero i bottoni 'messaggio' e 'rimuovi' -->
+            <% if (current_user.email == s.email) %>
+            <%= link_to "Vedi il tuo profilo", profile_path(s), :class => 'btn btn-outline-danger'%>
+            <% else %>
+            <%= link_to 'Vedi dettagli', profile_path(s) , :class => 'btn btn-outline-info' %>
+            <% end %>
+    </div>
 
-    <!-- in questo caso stiamo facendo un for sugli utenti e non piu su schede perciò il confronto qui è fatto direttamente su s e non su s.user come per le schede-->
-    <!-- può accedere al profilo solo l'admin per rimuoverlo e lasciare messaggi e il proprietario del profilo per visualizzare i messaggi lasciati dall' admin-->
-
-    <!--cliccando qui accedo alla pagina show del singolo profilo in cui mettero i bottoni 'messaggio' e 'rimuovi' -->
-    <% if (current_user.email == s.email) %>
-    <%= link_to "Vedi il tuo profilo", profile_path(s), :class => 'btn btn-outline-danger'%>
-    <% else %>
-    <%= link_to 'Vedi dettagli', profile_path(s) , :class => 'btn btn-outline-info' %>
     <% end %>
-</div>
-
-<% end %>

@@ -14,6 +14,12 @@
   
   
   <p>
+    <%= s.label :Titolo %>
+    <%= s.text_field :titolo, :placeholder =>'obligatory',:class => 'form-control' %>
+    <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+  </p>
+
+  <p>
     <%= s.label :tipo %> 
     <%= s.text_field :tipo,:placeholder =>'obligatory',:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
   </p>

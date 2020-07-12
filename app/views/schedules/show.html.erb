@@ -1,8 +1,13 @@
 <!-- qui posso usare la variabile ruby @schedule che ho definito nella funzione show nel controller -->
-<h1> pagina show </h1>
+<h1><%= @schedule.titolo %> </h1>
 <div class="shadow-lg p-3 mb-2 bg-white rounded">
-
-  <p class="m-1 font-weight-normal"><strong class="font-weight-bold">User:</strong> <%= @schedule.user.email.split('@')[0].capitalize %></p> 
+  <p class="m-1 font-weight-normal"><strong class="font-weight-bold">User:</strong>
+     <% if @schedule.user %> 
+        <%= @schedule.user.name %> <%= @schedule.user.surname %>
+      <% else %>
+        Utente non più attivo
+      <% end %>
+    </p> 
   <blockquote class="blockquote p-3 mb-2 bg-dark text-white">  "<%= @schedule.quote %>" <footer class="blockquote-footer"><cite title="Source Title">Source Title:  </cite><%= @schedule.fonte %></footer></blockquote>
   
   <p class="m-1"><strong class="font-weight-bold">Tipo:</strong><%= @schedule.tipo %></p>
@@ -18,14 +23,14 @@ in pratica volevo implementare la possibilita da parte dell'admin di banare le p
 
 <!-- perche questi bottoni funzionino dobbiamo definire le funzioni edit e destroy nel controller-->
 <% if(current_user==@schedule.user || current_user.admin) %>                    <!--mostra il tasto per eliminare la scheda e quello per editarla solo sulle schede create dall utente attuale e all'admin-->
-<%= link_to 'Edit This Schedule', edit_schedule_path, :class => 'btn btn-outline-secondary'%>
-<%= link_to 'Delete This Schedule', schedule_path,
+<%= link_to 'Modifica la scheda', edit_schedule_path, :class => 'btn btn-outline-secondary'%>
+<%= link_to 'Elimina la scheda', schedule_path,
                                    method: :delete,   
                                    data: {confirm: 'Are You Sure?'},
                                     :class => 'btn btn-outline-danger'%>
 <% else %>
-<button class='btn btn-outline-secondary disabled'>only owner and admin can edit this</button>
-<button class='btn btn-outline-danger disabled'>only owner and admin can delete this</button>
+<button class='btn btn-outline-secondary disabled'>Modifica la scheda</button>
+<button class='btn btn-outline-danger disabled'>Elimina la scheda</button>
 <% end %>
 
 <!-- per il destroy abbiamo dovuto specificare il metodo delete (anche qui dalle route vediamo che la chiamata crud associata al destroy è una delete.

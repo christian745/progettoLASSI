@@ -1,24 +1,26 @@
 <!-- ora voglio visualizzare tutti i commenti a questa specifica scheda proprio sotto di essa e prima del form per inserire altri commenti-->
-<h2> Comments: </h2>
+<h2> Commenti: </h2>
 
 <% @schedule.comments.each do |comment| %>
 <div class="shadow-none p-3 mb-3 bg-light rounded">         
 
-<p><strong class="font-weight-bold"><%= comment.user.email.split('@')[0].capitalize %>: </strong><%= comment.body %>  <!-- mostro in qualsiasi caso il body del commento-->
+<p><strong class="font-weight-bold">
+        <% if comment.user %>
+            <%= comment.user.name %> <%= comment.user.surname %>
+        <% else %>
+            Utente non più attivo
+        <% end %>
+    : </strong><%= comment.body %>  <!-- mostro in qualsiasi caso il body del commento-->
 
 <% if current_user.id == comment.user_id || current_user.admin %>   <!-- sblocco il bottone delete solo a chi ha scritto il commento oppure all'admin-->                            
 <!-- passiamo scheda a cui appartiene il commento che vogliamo cancellare e il commento stesso-->
-<%= link_to 'Delete', [comment.schedule,comment],   
-                                   method: :delete,   
-                                   data: {confirm: 'Are You Sure?'},
-                                    :class => 'btn btn-outline-danger float-right'%>
-<%= link_to 'Edit This Comment', edit_schedule_comment_path(comment.schedule,comment), :class => 'btn btn-outline-secondary float-right'%></p>
+<%= link_to 'Cancella', [comment.schedule,comment], method: :delete, data: {confirm: 'Sicuro di voler cancellare  il commento?'}, 
+    :class => 'btn btn-outline-danger float-right'%>
+
+<%= link_to 'Modifica', edit_schedule_comment_path(comment.schedule,comment), :class => 'btn btn-outline-secondary float-right'%></p>
 <!--IMPORTANTE: essendo una route annidata quando vado ad editare un commento o a cancellarlo devo passargli anche la schedule di appartenenza del commento 
 FONTE: https://stackoverflow.com/questions/21708256/no-route-matches-missing-required-keys-id/26379000-->
 
-<% else %>
-<button class='btn btn-outline-danger disabled float-right'>only owner and admin can delete this</button>
-<button class='btn btn-outline-secondary disabled float-right'>only owner and admin can edit this</button>
 <% end %>
 
   

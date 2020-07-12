@@ -71,6 +71,11 @@ class TipsController < ApplicationController
         end
     end
 
-
+    def filter
+        user_id = params[:id]
+        user = User.find(user_id).email
+        @tips = Tip.where(:user => user)
+        render "tips/index"
+    end
     
 end

@@ -1,4 +1,4 @@
-<h1> You're Editing This Comment </h1>
+<h1> Modifica il tuo commento </h1>
  
 
 <!-- la form è simile a quella dell'editing, cambia pero l'url che adesso è al metodo update della singola scheda passatagli. inoltre qui dobbiamo definire il metodo, che sara patch( dalle route vediamo che è la chimata associata da update)-->
@@ -9,7 +9,6 @@
     <% end %>
   <% end %>
   <p>
-    <%= s.label :body %> 
     <%= s.text_area :body,:class => 'form-control' %><!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
   </p>
 

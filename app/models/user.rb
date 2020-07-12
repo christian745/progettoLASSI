@@ -12,7 +12,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2] 
 
-  validates_presence_of :name, :surname, :email, :gender, :password
+  validates_presence_of :name, :surname, :email, :gender, :password, :on => :create
   
 
   def self.from_omniauth(auth)
