@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-    before_action :authenticate_user! , except: [:index]    #questo metodo impone che un utente per andare oltre la pagina iniziale si debba loggare o registrare. tranne che per la pagina iniziale, quella puo essere vista anche da utenti non registrati
+    before_action :authenticate_user!    #questo metodo impone che un utente per andare oltre la pagina iniziale si debba loggare o registrare. tranne che per la pagina iniziale, quella puo essere vista anche da utenti non registrati
     skip_before_action :verify_authenticity_token  
     def index
         @tips=Tip.all

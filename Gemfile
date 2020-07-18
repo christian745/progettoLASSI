@@ -16,6 +16,10 @@ gem 'httparty'  #per effettuare la get alla API REST che mi resituira codice JSO
 
 gem 'json'    #mi serve per gestire la risposta alla get fatta con httparty, che sarà codice json
 
+#testing
+gem 'cucumber'
+gem 'capybara'
+gem 'rspec'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'

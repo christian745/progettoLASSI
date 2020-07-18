@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-    before_action :authenticate_user! , except: [:index]    #questo metodo impone che un utente per andare oltre la pagina iniziale si debba loggare o registrare. tranne che per la pagina iniziale, quella puo essere vista anche da utenti non registrati
+    before_action :authenticate_user! , except: [:index, :about, :christian, :sandro, :lorenzo]    #questo metodo impone che un utente per andare oltre la pagina iniziale si debba loggare o registrare. tranne che per la pagina iniziale, quella puo essere vista anche da utenti non registrati
     def index
         @schedules = Schedule.all  #qui vogliamo che appaia la lista di tutte le schede
     end
