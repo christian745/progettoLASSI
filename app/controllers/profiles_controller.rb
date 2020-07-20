@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
         @profile = User.find(params[:id])  #la show viene chiamata quando sul browser faccio una get ad uno specifico profilo. 
                                            #che è proprio quello che faccio per esempio con la redirect nel metodo create
         @disabled = true
-        if (@profile.email == current_user.email)
+        if (@profile.email == current_user.email || current_user.admin)
             @disabled=false
         end
 

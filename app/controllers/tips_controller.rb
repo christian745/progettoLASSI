@@ -32,7 +32,7 @@ class TipsController < ApplicationController
         @user=current_user.email
         @tip_user=@tip.user
         @disabled=true
-        if (@user == @tip_user)
+        if (@user == @tip_user || current_user.admin)
             @disabled=false
         end
         
@@ -65,7 +65,7 @@ class TipsController < ApplicationController
         @user=current_user.email
         tip=Tip.find(params[:id])
         @tip_user=tip.user
-        if (@user == @tip_user)
+        if (@user == @tip_user || current_user.admin)
             tip.destroy
             redirect_to tips_path
         end
