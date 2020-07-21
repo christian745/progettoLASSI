@@ -12,13 +12,6 @@
     <%= s.text_area :body, :placeholder =>'minimo 5 caratteri' ,:class => 'form-control' %>
   </p>
 
-<!-- questa riga è la chiave di tutta la faccenda dei commenti associati a determinati utenti, finche non ho messo questa riga che associva id dellutente al suo riferimento della tabella commento non mi faceva creare dei nuovi commenti-->
-<!--perche grazie a questa riga la colonna relativa alla FK viene riempia in modo da non avere problemi di integrita--> 
-<p>
-    <%= s.hidden_field :user_id, value: current_user.id %>     
-  </p>
-
-  
   <p>
     <%= s.submit :class => 'btn btn-outline-success' %>
   </p>

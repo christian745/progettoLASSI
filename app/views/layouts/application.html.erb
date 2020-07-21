@@ -52,9 +52,9 @@
         <% if current_user %>
         <em><a href=<%= profile_path(current_user.id) %> >
             <% if current_user.gender == 'male' %>
-              <small class="text-light">Benvenuto <%= current_user.name %> <%= current_user.surname %></small>
+              <small class="text-light">Benvenuto <%= current_user.name %> <%= current_user.surname %> <% if current_user.admin %> <i>[admin]</i> <% end %> </small>
             <% else %>
-              <small class="text-light">Benvenuta <%= current_user.name %> <%= current_user.surname %></small>
+              <small class="text-light">Benvenuta <%= current_user.name %> <%= current_user.surname %> <% if current_user.admin %> <i>[admin]</i> <% end %></small>
               <% end %>
             </a></em>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete ,:class => 'btn btn-outline-danger' %><!-- mandera una richiesta http delete alla routes specificata da quel path(vedi sulle routes il percorso) -->

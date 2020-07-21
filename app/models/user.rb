@@ -13,6 +13,8 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:google_oauth2] 
 
   validates_presence_of :name, :surname, :email, :password, :on => :create
+
+  validates_presence_of :name, :surname, :on => :update
   
 
   def self.from_omniauth(auth)

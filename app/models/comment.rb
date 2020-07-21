@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
    
    belongs_to :schedule             #significa che ogni commento è relativo a una sola scheda
-   belongs_to :user      #questo belongs to gli da fastidio non so ancora perche.
+   belongs_to :user      
   
   
   #metto delle condizioni alla form per aggiungere il commento. come la presenza obbligatoria, o la lunghezza minima

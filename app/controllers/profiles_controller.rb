@@ -19,9 +19,12 @@ class ProfilesController < ApplicationController
     end
 
     def destroy
-        @profile = User.find(params[:id])   #individuo lo specifico utente che voglio eliminare
-        @profile.destroy                        #metodo che elimina l'utente specifico dal database
-
-        redirect_to profiles_path   #ridirigo alla lista dei profili
+        @profile = User.find(params[:id])       #individuo lo specifico utente che voglio eliminare
+        if(current_user.admin || current_user.id == @profile.id)
+            @profile.destroy                        #metodo che elimina l'utente specifico dal database
+            redirect_to profiles_path   #ridirigo alla lista dei profili
+        else
+            redirect_to profile_path(@profile)
+        end
     end
 end
