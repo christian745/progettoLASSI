@@ -272,7 +272,7 @@ Given('a schedule') do
                               quote: 'citazione', fonte: "fonte citazione")
 end
 
-Then( "I should not see User email") do 
+Then("I should not see User email") do 
   if page.respond_to? :should
     page.should have_no_content(@email)
   else
