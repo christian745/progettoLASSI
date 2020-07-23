@@ -1,0 +1,42 @@
+<h1>Modifica Profilo</h1>
+<form id="myform" method="POST" action=<%= profile_path(@profile)%>>
+    <input type="hidden" name="_method" value="put">    
+    <div class="form-group">
+        <h4 class="text-dark">Nome</h4>
+        <small>*obbligatorio</small>
+         <input type="text" class="form-control" name="name" value="<%= @profile.name %>">
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Cognome</h4>
+        <small>*obbligatorio</small>
+        <input type="text" class="form-control" name="surname" value="<%= @profile.surname %>">
+
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Indirizzo</h4>
+        <input type="text" class="form-control" name="address" value="<%= @profile.address %>">
+
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4 class="text-dark">Sesso</h4>
+        <div class="form-check">
+            <input class="form-check-input" id="uomo" name="gender" type="radio" value="male" checked='true' />
+            <label class="form-check-label" for="uomo">Uomo</label>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" id="donna" name="gender" type="radio" value="female"/> 
+            <label class="form-check-label" for="donna">Donna</label>
+        </div>
+    </div>
+    <hr>
+
+    <div class="actions">
+        <input type="submit" value="Aggiorna" class="btn btn-outline-primary">
+        <%= link_to "Torna al profilo", profile_path(@profile), :class => 'btn btn-outline-primary'%>
+    </div>
+
+</form>

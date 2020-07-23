@@ -1,19 +1,20 @@
 class TipsController < ApplicationController
     before_action :authenticate_user!    #questo metodo impone che un utente per andare oltre la pagina iniziale si debba loggare o registrare. tranne che per la pagina iniziale, quella puo essere vista anche da utenti non registrati
-    skip_before_action :verify_authenticity_token  
+    before_action :verify_authenticity_token
+    
     def index
         @tips=Tip.all
     end
 
     def new
-               
+        @user = current_user.id
     end
 
     def create
-        user=current_user
         tit=params[:titolo]
         cat=params[:categoria]
         cont=params[:contenuto]
+        @user=User.find(params[:user])
         trovato=Tip.where(titolo: tit)
         if (trovato.length != 0)
             flash[:alert] = "Titolo già esistente"
@@ -22,7 +23,7 @@ class TipsController < ApplicationController
             flash[:alert] = "Riempi tutti i campi"
             redirect_to new_tip_path
         else
-            @tip=Tip.create!({user: user, titolo: tit, categoria: cat, contenuto: cont })
+            @tip=Tip.create!(user: @user, titolo: tit, categoria: cat, contenuto: cont)
             redirect_to tips_path
         end
     end

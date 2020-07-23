@@ -30,7 +30,11 @@
         <tr>
             <td><h5><%= tip.titolo %></h5></td>
             <td><%= tip.categoria %></td>
-            <td><%= tip.user.name %> <%= tip.user.surname %> </td>
+            <% if tip.user%>
+                <td><%= tip.user.name %> <%= tip.user.surname %> </td>
+            <% else %>
+                <td> Utente non più attivo </td>
+            <% end %>
             <td><%= link_to("Vai al contenuto", tip_path(tip))%></td>
         </tr>
         <% end %>

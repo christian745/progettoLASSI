@@ -1,5 +1,5 @@
 class Schedule < ApplicationRecord
-    has_many :comments,dependent: :delete_all                #dopo aver creato la tabella per i commenti nel database, con il riferimento alla tabella schedule, bisogna aggiungere anche questa relazione 
+    has_many :comments, dependent: :delete_all                #dopo aver creato la tabella per i commenti nel database, con il riferimento alla tabella schedule, bisogna aggiungere anche questa relazione 
     belongs_to :user                                         #appartiene a un solo user, riferimento analogo nel controllore degli user
     
     validates :tipo, presence: true   #metto delle condizioni alla form per aggiungere schede. come la presenza obbligatoria, o la lunghezza minima

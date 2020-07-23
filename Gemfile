@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 gem 'devise'            #per implementare log in, log out e log up in locale
+#gem 'canard', '~> 0.5.0.pre'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2' #per l'accesso tramite google

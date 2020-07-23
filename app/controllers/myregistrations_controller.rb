@@ -1,5 +1,5 @@
 class MyregistrationsController < Devise::RegistrationsController
-
+  before_action :authenticate_user!
   def update 
     @profile = User.find(resource.id)
     if ( params[:user][:name] == "" || params[:user][:surname] == "" || params[:user][:gender] == "")
