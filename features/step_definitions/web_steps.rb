@@ -255,9 +255,27 @@ end
 
 #our step definition
 Given('a valid admin') do
-  @admin = User.create(name: 'admin', surname: 'admin', email: 'admin@admin.com', password: 'admin123') 
+  @admin = User.create(name: 'admin', surname: 'admin', email: 'admin@admin.com', password: 'admin123', admin: true)
 end 
 
-When('I press {string}') do |string|
-  click_button string
+Given('a user') do
+  @user = User.create(name: 'name', surname: 'surname', email: 'user@user.com', password: 'user12345', admin: false)
+  @email = @user.email
+end
+
+Given('a second user') do
+  @second_user = User.create(name: 'name1', surname: 'surname1', email: 'second@user.com', password: 'user12345', admin: false)
+end
+
+Given('a schedule') do
+  @schedule = Schedule.create(user_id: @user.id, titolo: 'Scheda1', tipo: 'workout', muscoli: 'bicipiti', descrizione: "Descrizione di prova", 
+                              quote: 'citazione', fonte: "fonte citazione")
+end
+
+Then( "I should not see User email") do 
+  if page.respond_to? :should
+    page.should have_no_content(@email)
+  else
+    assert page.has_no_content?(@email)
+  end
 end

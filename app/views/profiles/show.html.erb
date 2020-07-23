@@ -37,7 +37,7 @@
     <a class="btn btn-outline-primary disabled">Rimuovi profilo</a>
 <% else %>
     <a class="btn btn-outline-primary" href=<%= edit_user_registration_path(@profile) %>>Modifica profilo</a>
-    <%= link_to "Rimuovi profilo", profile_path(@profile), :method => :delete, data: {:confirm => "Sei sicuro?"}, :class => 'btn btn-outline-primary' %>
+    <%= link_to "Rimuovi profilo", profile_path(@profile), :method => :delete, :class => 'btn btn-outline-primary' %>
 <% end %>
 
 <br><br>

@@ -16,6 +16,17 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^the Login\s?page$/
+      '/users/sign_in'
+
+    when /^the Profile Details\s?page$/
+       profile_path(@user.id)
+
+    when /^the Profiles\s?page$/
+          '/profiles'
+
+    when /^the Schedule Details\s?page$/
+       schedule_path(@schedule.id)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
