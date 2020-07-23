@@ -71,6 +71,7 @@ RSpec.describe User, type: :model do
     describe 'associations' do
         it { should have_many(:comments) }  
         it { should have_many(:schedules) }
+        it { should have_many(:tips) }
     end
 
 

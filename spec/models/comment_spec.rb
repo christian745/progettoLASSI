@@ -33,6 +33,7 @@ RSpec.describe Comment, type: :model do
         end
     end
 
+    #gem shoulda-matchers
     describe "associations" do
         it {should belong_to(:user)}
         it {should belong_to(:schedule)}      
