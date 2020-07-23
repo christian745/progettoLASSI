@@ -22,14 +22,14 @@ class TipsController < ApplicationController
             flash[:alert] = "Riempi tutti i campi"
             redirect_to new_tip_path
         else
-            @tip=Tip.create!({user: user.email, titolo: tit, categoria: cat, contenuto: cont })
+            @tip=Tip.create!({user: user, titolo: tit, categoria: cat, contenuto: cont })
             redirect_to tips_path
         end
     end
 
     def show
         @tip = Tip.find(params[:id])
-        @user=current_user.email
+        @user=current_user
         @tip_user=@tip.user
         @disabled=true
         if (@user == @tip_user || current_user.admin)
@@ -50,7 +50,7 @@ class TipsController < ApplicationController
         cont = params[:contenuto]
         @tip = Tip.find(id)
         query= Tip.where(titolo: tit)
-        if (query.length != 0)
+        if (query.length != 0 && tit != @tip.titolo)
             flash[:alert] = "Titolo già esistente"
             redirect_to edit_tip_path(@tip)
             return
@@ -62,7 +62,7 @@ class TipsController < ApplicationController
     end
 
     def destroy
-        @user=current_user.email
+        @user=current_user
         tip=Tip.find(params[:id])
         @tip_user=tip.user
         if (@user == @tip_user || current_user.admin)
@@ -73,7 +73,7 @@ class TipsController < ApplicationController
 
     def filter
         user_id = params[:id]
-        user = User.find(user_id).email
+        user = User.find(user_id)
         @tips = Tip.where(:user => user)
         render "tips/index"
     end

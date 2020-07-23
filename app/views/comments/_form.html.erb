@@ -6,8 +6,6 @@
 <%= form_for([@schedule, @schedule.comments.build]) do |s| %> <!-- :schedule è la variabile che conterra i parametri messi nella form, questi parametri saranno mandati all'url specificato, cioe al metodo create del controller -->
  
 
-<!--se volessi aggiungere il nome di chi ha pubblicato il commento vicino al commento non so devo fare unacolonna username nella tabella commento e riempirla automaticamente con lo username del current_user per poi mostrarla nel file _comments.html.erb -->
-
   <p>
     <%= s.text_area :body, :placeholder =>'minimo 5 caratteri' ,:class => 'form-control' %>
   </p>
@@ -16,6 +14,3 @@
     <%= s.submit :value => 'Aggiungi', :class => 'btn btn-outline-success' %>
   </p>
 <% end %>
-
-
-<!-- discorso analogo al file _comments.html.erb-->

@@ -1,12 +1,13 @@
-<h1 style="color:red" class="mb-3 p-0"> Add a schedule with customized gym quote </h1>
+<h1 class="mb-3 p-0"> Aggiungi una scheda </h1>
 
-<hr class="mt-5" color="#00C851">
+<hr>
 
-<h3 > Schedule section </h3>
+<h3 > Sezione scheda: </h3>
+<br>
 <%= form_for :schedule, url: schedules_path do |s| %> <!-- :schedule è la variabile che conterra i parametri messi nella form, questi parametri saranno mandati all'url specificato, cioe al metodo create del controller -->
    <!-- subito dopo la definizione della form possiamo mettere questo codice che servira a visualizzare un messagio di errore in caso i requisiti minimi
         dei campi della form da riempire non siamo rispettati. questi requisiti minimi sono definiti nel modulo Schedule(validates....) -->
-  <% if @schedule.errors.any? %> <!--- @schedule è la variabile passata a questa view dalla funzione new nel controller delle schedules-->
+  <% if @schedule.errors.any? %> 
     <% @schedule.errors.full_messages.each do |msg| %>
       <div class="alert alert-danger"><%= msg %></div>
     <% end %>
@@ -14,54 +15,44 @@
   
   
   <p>
-    <%= s.label :Titolo %>
-    <%= s.text_field :titolo, :placeholder =>'obligatory',:class => 'form-control' %>
-    <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+    <b><%= s.label :Titolo %></b>
+    <%= s.text_field :titolo, :placeholder =>'obbligatorio',:class => 'form-control' %>
   </p>
 
   <p>
-    <%= s.label :tipo %> 
-    <%= s.text_field :tipo,:placeholder =>'obligatory',:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+    <b><%= s.label :tipo %></b>
+    <%= s.text_field :tipo,:placeholder =>'obbligatorio',:class => 'form-control' %>
   </p>
 
   <p>
-    <%= s.label :muscoli %> 
-    <%= s.text_field :muscoli, :placeholder =>'obligatory',:class => 'form-control' %>
+    <b><%= s.label :muscoli %></b>
+    <%= s.text_field :muscoli, :placeholder =>'obbligatorio',:class => 'form-control' %>
   </p>
 
-<!-- ho commentato la textarea per inserire la descrizione perche quel campo verra riempito direttamente nella funzione create nello schedules_controller
-con il messaggio della risposta alla get che abbiamo inviato con il metodo HTTParty.get
-IMPORTANTE: quando aggiungero la colonna apposita per la citazioe nella scheda questa textarea deve tornare visibile all'utente, che potra inserire la descrizione
-  -->
   <p>
-    <%= s.label :descrizione %> 
-    <%= s.text_area :descrizione,:placeholder =>'obligatory',:class => 'form-control' %>
+    <b><%= s.label :descrizione %></b>
+      <%= s.text_area :descrizione,:placeholder =>'obbligatorio',:class => 'form-control' %>
   </p>
 
-<hr color="#00C851">
+<hr>
 
-<h3> Quote section </h3>
+<h3> Sezione Citazione </h3>
 <br>
-<h5> Insert the parameters to customize the quote to attach with this schedule, at least the search area must be filled</h5>
+<h5>Inserisci almeno uno dei seguenti campi</h5>
 
 <p>
-    <%= s.label :search %>   <!-- aggiungendo in questo modo il parametro value riesco a passare i parametri inseriti nella form al controller. fonti: https://stackoverflow.com/questions/40917244/rails-submit-form-with-get-parameters-from-url-->
-    <%= s.text_field :search,:required => true, :value => params[:search],:placeholder =>'term you want to search for, i.e. a word you want in the quotes. For example “exercise” ',:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
-  </p>                       <!--required true rende il campo obbligatorio per mandare la form -->
+    <b><%= s.label :cerca %></b>
+    <%= s.text_field :search, :required => true, :value => params[:search], :placeholder =>'es. "motivation", "strenght", "gain"',:class => 'form-control' %>
+  </p>                       
 
   <p>
-    <%= s.label :name %> 
-    <%= s.text_field :name,:value => params[:name],:placeholder =>'name you want to search for, i.e. the name of the person who is author of the quote.For example “alex” ',:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
+    <b><%= s.label :tag %></b>
+    <%= s.text_field :tag,:value => params[:tag],:placeholder =>'es. "crossfit", "bodybuilding", "powelifting"',:class => 'form-control' %>
   </p>
 
-  <p>
-    <%= s.label :tag %> 
-    <%= s.text_field :tag,:value => params[:tag],:placeholder =>'tag you want to search for, i.e. the type of quote authors you are looking for. For example “crossfit”',:class => 'form-control' %> <!-- in questo modo metto due parametro, il secondo è una classe di bootstrap per lo stile-->
-  </p>
-
-<hr color="#00C851">
+<hr>
 
   <p>
-    <%= s.submit :class => 'btn btn-outline-success' %>
+    <%= s.submit :value => 'Salva scheda', :class => 'btn btn-outline-success' %>
   </p>
 <% end %>

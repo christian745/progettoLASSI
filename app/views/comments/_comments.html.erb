@@ -13,13 +13,13 @@
     : </strong><%= comment.body %>  <!-- mostro in qualsiasi caso il body del commento-->
 
 <% if current_user.id == comment.user_id || current_user.admin %>   <!-- sblocco il bottone delete solo a chi ha scritto il commento oppure all'admin-->                            
-<!-- passiamo scheda a cui appartiene il commento che vogliamo cancellare e il commento stesso-->
-<%= link_to 'Cancella', [comment.schedule,comment], method: :delete, data: {confirm: 'Sicuro di voler cancellare  il commento?'}, 
-    :class => 'btn btn-outline-danger float-right'%>
+    <!-- passiamo scheda a cui appartiene il commento che vogliamo cancellare e il commento stesso-->
+    <%= link_to 'Cancella', [comment.schedule,comment], method: :delete, data: {confirm: 'Sicuro di voler cancellare  il commento?'}, 
+        :class => 'btn btn-outline-danger float-right'%>
 
-<%= link_to 'Modifica', edit_schedule_comment_path(comment.schedule,comment), :class => 'btn btn-outline-secondary float-right'%></p>
-<!--IMPORTANTE: essendo una route annidata quando vado ad editare un commento o a cancellarlo devo passargli anche la schedule di appartenenza del commento 
-FONTE: https://stackoverflow.com/questions/21708256/no-route-matches-missing-required-keys-id/26379000-->
+    <%= link_to 'Modifica', edit_schedule_comment_path(comment.schedule,comment), :class => 'btn btn-outline-secondary float-right'%></p>
+    <!--IMPORTANTE: essendo una route annidata quando vado ad editare un commento o a cancellarlo devo passargli anche la schedule di appartenenza del commento 
+    FONTE: https://stackoverflow.com/questions/21708256/no-route-matches-missing-required-keys-id/26379000-->
 
 <% end %>
 

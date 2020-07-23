@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
         end
 
         @count_schedules = Schedule.where(:user_id => @profile.id).length
-        @count_tips = Tip.where(:user => @profile.email).length
+        @count_tips = Tip.where(:user => @profile).length
         @count_comments = Comment.where(:user_id => @profile.id).length
     end
 

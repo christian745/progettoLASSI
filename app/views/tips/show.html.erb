@@ -3,6 +3,7 @@
         
         <blockquote class="blockquote">
             <h1 class="display-4"><%= @tip.titolo %></h1>
+            <footer class="blockquote-footer">Creato da: &nbsp;<cite title="Source Title"><a href="<%= profile_path(@tip.user)%>"><%= @tip.user.name%> <%= @tip.user.surname%></a></cite></footer>
             <footer class="blockquote-footer">Categoria: &nbsp;<cite title="Source Title"><%= @tip.categoria%></cite></footer>
         </blockquote>
 
